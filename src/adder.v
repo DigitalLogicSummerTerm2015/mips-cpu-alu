@@ -1,7 +1,7 @@
 module adder(
-    output Z,
-    output V,
-    output N,
+    output Z,  // Zero.
+    output V,  // Overflow.
+    output N,  // Negative.
     output [31:0] dout,
     input [31:0] A,
     input [31:0] B,
