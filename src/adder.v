@@ -5,8 +5,8 @@ module adder(
     output [31:0] dout,
     input [31:0] A,
     input [31:0] B,
-    input ctrl,
-
+    input ctrl,  // 0 to add, 1 to sub.
+    input Sign
 );
 
 
