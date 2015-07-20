@@ -1,4 +1,4 @@
-module logic(
+module logicer(
     output reg [31:0] dout,
     input [31:0] A,
     input [31:0] B,
