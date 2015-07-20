@@ -32,8 +32,10 @@ always @(*)
                 dout = B << SHIFT_AMOUNT;
             2'b01:  // SRL: S = B >> A[4:0].
                 dout = B >> SHIFT_AMOUNT;
-            default:  // SRA: S = B >> A[4:0] 算数移位.
+            2'b11:  // SRA: S = B >> A[4:0] 算数移位.
                 dout = B >>> SHIFT_AMOUNT;
+            default:
+                dout = B;
         endcase
     else
         dout = B;

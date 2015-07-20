@@ -17,6 +17,8 @@ always @(*) begin
             dout = ~(A | B);
         4'b1010:  // "A": S = A.
             dout = A;
+        default:
+            dout = 0;
     endcase
 end
 
