@@ -1,7 +1,7 @@
 module comparer(
     output reg [31:0] dout,
     input Z,  // Zero.
-    input V,  // Overflow.
+    input V,  // Overflow, useless here...
     input N,  // Negative.
     input [3:1] ctrl
 );
