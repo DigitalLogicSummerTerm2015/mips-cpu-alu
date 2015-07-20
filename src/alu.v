@@ -7,7 +7,7 @@ module alu(
 );
 
 wire zero, overflow, negative;
-wire adder_out, comparer_out, logicer_out, shifter_out;
+wire [31:0] adder_out, comparer_out, logicer_out, shifter_out;
 
 adder adder1(.Z   (zero),
              .V   (overflow),

@@ -14,7 +14,7 @@ wire [31:0] num2 = ctrl ? (~B + 1'b1) : B;
 assign dout = A + num2,
        Z = (dout == 0),
        V = ( A[31] &  num2[31] & ~dout[31] |  // neg + neg = pos.
-            ~A[31] & ~num2[31] &  dout[31])   // pos + pos = neg.
+            ~A[31] & ~num2[31] &  dout[31]),  // pos + pos = neg.
        N = dout[31] ^ V;
 
 endmodule

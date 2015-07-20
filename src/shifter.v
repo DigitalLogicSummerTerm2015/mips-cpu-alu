@@ -5,7 +5,7 @@ module shifter(
     input [1:0] ctrl
 );
 
-wire dout_16, dout_8, dout_4, dout_2;
+wire [31:0] dout_16, dout_8, dout_4, dout_2;
 
 fix_shifter #(16) shifter_16(dout_16, B, ctrl, A[4]);
 fix_shifter #(8) shifter_8(dout_8, dout_16, ctrl, A[3]);
@@ -25,7 +25,7 @@ module fix_shifter(
 
 parameter SHIFT_AMOUNT = 1;
 
-always @(*)
+always @(*) begin
     if (enable)
         case (ctrl)
             2'b00:  // SLL: S = B << A[4:0].
