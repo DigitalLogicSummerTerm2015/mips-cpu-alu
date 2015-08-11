@@ -11,7 +11,7 @@ alu alu1(.Z     (Z),
          .Sign  ());  // Sign is useless here.
 
 initial begin
-    $monitor($time, " Z: %d, A: %d, B: %d, ALUFun: %b",
+    $display("  Z: %d, A: %d, B: %d, ALUFun: %b",
              Z, A, B, ALUFun);
 
     #5 $display("ADD: S = A + B.");

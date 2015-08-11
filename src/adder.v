@@ -14,7 +14,7 @@ wire [32:0] num2 = ctrl ? (~{1'b0, B} + 1'b1) : {1'b0, B};
 wire [32:0] sum = num1 + num2;
 
 assign dout = sum[31:0],
-       Z = (dout == 0),
+       Z = (sum == 0),
                                                         // Signed:
        V = Sign & ( A[31] &  num2[31] & ~dout[31] |     // neg + neg = pos.
                    ~A[31] & ~num2[31] &  dout[31]) |    // pos + pos = neg.
