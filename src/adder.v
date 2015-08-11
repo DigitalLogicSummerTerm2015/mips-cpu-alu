@@ -9,12 +9,17 @@ module adder(
     input Sign   // Useless here, because we don't have overflow exception.
 );
 
-wire [31:0] num2 = ctrl ? (~B + 1'b1) : B;
+wire [32:0] num1 = {1'b0, A};
+wire [32:0] num2 = ctrl ? (~{1'b0, B} + 1'b1) : {1'b0, B};
+wire [32:0] sum = num1 + num2;
 
-assign dout = A + num2,
+assign dout = sum[31:0],
        Z = (dout == 0),
-       V = ( A[31] &  num2[31] & ~dout[31] |  // neg + neg = pos.
-            ~A[31] & ~num2[31] &  dout[31]),  // pos + pos = neg.
-       N = dout[31] ^ V;
+                                                        // Signed:
+       V = Sign & ( A[31] &  num2[31] & ~dout[31] |     // neg + neg = pos.
+                   ~A[31] & ~num2[31] &  dout[31]) |    // pos + pos = neg.
+           ~Sign & sum[32],  // Unsigned: out of range.
+       N = Sign & (dout[31] ^ V) |  // Signed:   neg ^ overflow.
+           ~Sign & ctrl & V;        // Unsigned: sub & overflow.
 
 endmodule
