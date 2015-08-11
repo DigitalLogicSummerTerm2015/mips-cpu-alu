@@ -25,6 +25,8 @@ module fix_shifter(
 
 parameter SHIFT_AMOUNT = 1;
 
+wire signed [31:0] signedB = B;
+
 always @(*) begin
     if (enable)
         case (ctrl)
@@ -33,7 +35,7 @@ always @(*) begin
             2'b01:  // SRL: S = B >> A[4:0].
                 dout = B >> SHIFT_AMOUNT;
             2'b11:  // SRA: S = B >> A[4:0] 算数移位.
-                dout = B >>> SHIFT_AMOUNT;
+                dout = signedB >>> SHIFT_AMOUNT;
             default:
                 dout = B;
         endcase
